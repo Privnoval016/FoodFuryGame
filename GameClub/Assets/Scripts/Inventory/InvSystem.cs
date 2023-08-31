@@ -104,11 +104,12 @@ public class InvSystem : MonoBehaviour {
             GameObject itemPrefab = slots[selectedSlotIndex].item.prefab;
             float throwForce = 10f;
             float throwAngle = Camera.main.GetComponent<CameraLook>().PitchAngle;
+            float deltaY = 0.2f;
             Debug.Log(throwAngle);
             float throwDistance = 2f;
             float spinForce = 5f;
             Vector3 throwDirection = (transform.forward).normalized;
-            throwDirection.y = Mathf.Sin(Mathf.Deg2Rad * throwAngle);
+            throwDirection.y = Mathf.Sin(Mathf.Deg2Rad * throwAngle) + deltaY;
             Vector3 throwPosition = transform.position + throwDirection * throwDistance;
             GameObject thrownItem = Instantiate(itemPrefab, throwPosition, Quaternion.identity);
             thrownItem.GetComponent<Object>().stats = slots[selectedSlotIndex].item;
