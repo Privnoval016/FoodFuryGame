@@ -8,18 +8,18 @@ public class Item : ScriptableObject {
     public string itemName;
     [TextArea(3, 3)] public string description;
     public enum Types {
-        throwable,
-        currency
+        Throwable,
+        Currency
     }
     public enum Rarity {
-        common,
-        rare,
-        unreal
+        Common,
+        Rare,
+        Unreal
     }
     
     public GameObject prefab;
     public Texture icon;
     public Types type;
     public Rarity rarity;
-    public int baseValue;
+    public int damage;
 }

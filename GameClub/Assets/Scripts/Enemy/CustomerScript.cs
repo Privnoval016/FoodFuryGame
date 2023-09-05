@@ -7,14 +7,14 @@ public class CustomerScript : MonoBehaviour
 {
 
     NavMeshAgent agent;
-    private float speed;
+    public float speed;
     public float health;
-    private float damage;
-    private float attackRadius;
-    private float attackTime;
+    public float damage;
+    public float attackRadius;
+    public float attackTime;
     public int type;
-    private GameObject target;
-    private Vector3 targetLocation;
+    public GameObject target;
+    public Vector3 targetLocation;
 
     public GameObject[] skins = new GameObject[4];
 
@@ -25,21 +25,26 @@ public class CustomerScript : MonoBehaviour
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-
+        SetupEnemy(speed, health, damage, attackTime, attackRadius, target, target.transform.position, type);
     }
 
     // Update is called once per frame
     void Update()
     {
         if (Vector3.Distance(targetLocation, transform.position) < attackRadius)
-        {
+        { 
             agent.ResetPath();
-            transform.LookAt(target.transform.position);
+            //transform.LookAt(target.transform.position);
             timer += Time.deltaTime;
             if (timer > attackTime)
             {
                 DealDamage();
             }
+        }
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -61,11 +66,14 @@ public class CustomerScript : MonoBehaviour
 
         agent.SetDestination(targetLocation);
         agent.speed = speed;
-        agent.acceleration = speed * 1.5f;
+        agent.acceleration = speed * 2f;
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        
+        if (collision.gameObject.CompareTag("Food"))
+        {
+            health -= collision.gameObject.GetComponent<Object>().stats.damage;
+        }
     }
 }

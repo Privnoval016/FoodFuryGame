@@ -96,7 +96,7 @@ public class InvSystem : MonoBehaviour {
             Debug.Log("No item in selected slot.");
             return;
         }
-        if (slots[selectedSlotIndex].item.type != Item.Types.throwable) {
+        if (slots[selectedSlotIndex].item.type != Item.Types.Throwable) {
             Debug.Log("Cannot throw item.");
             return;
         }
@@ -108,10 +108,13 @@ public class InvSystem : MonoBehaviour {
             Debug.Log(throwAngle);
             float throwDistance = 2f;
             float spinForce = 5f;
+            
             Vector3 throwDirection = (transform.forward).normalized;
             throwDirection.y = Mathf.Sin(Mathf.Deg2Rad * throwAngle) + deltaY;
             Vector3 throwPosition = transform.position + throwDirection * throwDistance;
             GameObject thrownItem = Instantiate(itemPrefab, throwPosition, Quaternion.identity);
+            thrownItem.GetComponent<Rigidbody>().useGravity = true;
+
             thrownItem.GetComponent<Object>().stats = slots[selectedSlotIndex].item;
             thrownItem.SetActive(true);
             Rigidbody thrownItemRigidbody = thrownItem.GetComponent<Rigidbody>();
