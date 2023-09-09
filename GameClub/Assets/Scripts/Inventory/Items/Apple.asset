@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797f87aff3a4cd048b7f543e53dd75d7, type: 3}
+  m_Name: Apple
+  m_EditorClassIdentifier: 
+  id: 1
+  itemName: Apple
+  description: A grocery store apple
+  prefab: {fileID: 7517454210159128839, guid: 4a83dfa215421d84f8e9edb01220aa47, type: 3}
+  icon: {fileID: 2800000, guid: 52bc3222ac741ff42bbcf6c822db3caa, type: 3}
+  type: 0
+  rarity: 0
+  damage: 1
