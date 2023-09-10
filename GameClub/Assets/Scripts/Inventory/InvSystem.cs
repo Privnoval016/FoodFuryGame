@@ -7,6 +7,7 @@ public class InvSystem : MonoBehaviour {
     [SerializeField] public Slot[] slots = new Slot[8];
     [SerializeField] GameObject InventoryUI;
     public int selectedSlotIndex = 1;
+    public Transform mapParent;
 
     private void Awake() {
         for (int i = 0; i < slots.Length; ++i) {
@@ -48,7 +49,9 @@ public class InvSystem : MonoBehaviour {
             float dropDistance = 2f;
             Vector3 dropPosition = playerPosition + playerForward * dropDistance;
             GameObject droppedItem = Instantiate(slots[selectedSlotIndex].item.prefab, dropPosition, Quaternion.identity);
+            droppedItem.transform.SetParent(mapParent);
             droppedItem.GetComponent<Object>().stats = slots[selectedSlotIndex].item;
+            droppedItem.GetComponent<Object>().initialPosition = slots[selectedSlotIndex].originalPosition;
             droppedItem.SetActive(true);
             slots[selectedSlotIndex].item = null;
             slots[selectedSlotIndex].setMat();
@@ -82,6 +85,7 @@ public class InvSystem : MonoBehaviour {
             SetHighlightOnSlot(slotIndex, true);
             selectedSlotIndex = slotIndex;
             slots[slotIndex].item = obj.stats;
+            slots[slotIndex].originalPosition = obj.initialPosition;
             Destroy(obj.gameObject);
             slots[slotIndex].setMat();
             itemPicked = true;
@@ -108,19 +112,40 @@ public class InvSystem : MonoBehaviour {
             Debug.Log(throwAngle);
             float throwDistance = 2f;
             float spinForce = 5f;
-            
+
             Vector3 throwDirection = (transform.forward).normalized;
             throwDirection.y = Mathf.Sin(Mathf.Deg2Rad * throwAngle) + deltaY;
             Vector3 throwPosition = transform.position + throwDirection * throwDistance;
+            
             GameObject thrownItem = Instantiate(itemPrefab, throwPosition, Quaternion.identity);
-            thrownItem.GetComponent<Rigidbody>().useGravity = true;
+            thrownItem.transform.SetParent(mapParent);
 
-            thrownItem.GetComponent<Object>().stats = slots[selectedSlotIndex].item;
-            thrownItem.SetActive(true);
+            BoxCollider boxCollider = thrownItem.GetComponent<BoxCollider>();
+            
+            if (boxCollider != null) {
+                // remove trigger
+                boxCollider.isTrigger = false;
+            } else {
+                Debug.LogWarning("Box Collider component not found on the instantiated object.");
+            }
+
+            // gravity rigidbody
             Rigidbody thrownItemRigidbody = thrownItem.GetComponent<Rigidbody>();
+            thrownItemRigidbody.useGravity = true;
+
+            // stats
+            thrownItem.GetComponent<Object>().stats = slots[selectedSlotIndex].item;
+            thrownItem.GetComponent<Object>().initialPosition = slots[selectedSlotIndex].originalPosition;
+            
+            // active
+            thrownItem.SetActive(true);
+
+            // force
             thrownItemRigidbody.AddForce(throwDirection * throwForce, ForceMode.Impulse);
             Vector3 spinDirection = UnityEngine.Random.insideUnitSphere.normalized;
             thrownItemRigidbody.AddTorque(spinDirection * spinForce, ForceMode.Impulse);
+            
+            // clear slot
             slots[selectedSlotIndex].item = null;
             slots[selectedSlotIndex].setMat();
         } else {

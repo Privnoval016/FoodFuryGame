@@ -7,6 +7,7 @@ public class Slot : MonoBehaviour {
     public Item item;
     RawImage icon;
     public RawImage highlight;
+    public Vector3 originalPosition;
     TextMeshProUGUI displayName;
 
     public void setMat() {
