@@ -19,8 +19,6 @@ public class Object : MonoBehaviour
         bc = GetComponent<BoxCollider>();
         bc.isTrigger = true;
 
-        stats.damage = 1;
-
         if (!gameObject.name.Contains("(Clone)"))
         {
             initialPosition = transform.position;
