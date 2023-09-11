@@ -16,42 +16,58 @@ public class CustomerScript : MonoBehaviour
     public GameObject target;
     public Vector3 targetLocation;
 
-    public GameObject[] skins = new GameObject[4];
+    public Material[] skins = new Material[4];
+    public GameObject deathEffect;
 
     public bool atTarget;
     private float timer;
+
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        SetupEnemy(speed, health, damage, attackTime, attackRadius, target, target.transform.position, type);
+        GetComponentInChildren<SkinnedMeshRenderer>().material = skins[Random.Range(0, skins.Length)];
+        animator.SetBool("isRunning", true);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(targetLocation, transform.position) < attackRadius)
-        { 
+        if (Vector2.Distance(new Vector2(targetLocation.x, targetLocation.z), new Vector2(transform.position.x, transform.position.z)) < attackRadius)
+        {
+            animator.SetBool("isRunning", false);
             agent.ResetPath();
-            //transform.LookAt(target.transform.position);
+            float currentX = transform.rotation.eulerAngles.x;
+            float currentZ = transform.rotation.eulerAngles.z;
+            transform.LookAt(target.transform.position);
+            transform.rotation = Quaternion.Euler(currentX, transform.rotation.eulerAngles.y, currentZ);
             timer += Time.deltaTime;
             if (timer > attackTime)
             {
-                DealDamage();
+                timer = 0;
+                StartCoroutine(DealDamage());
             }
         }
 
         if (health <= 0)
         {
+            Object.Instantiate(deathEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }
 
-    public void DealDamage()
-    {
 
-    }   
+    IEnumerator DealDamage()
+    {
+        animator.SetBool("isPunch", true);
+        yield return new WaitForSeconds(0.5f);
+        target.GetComponent<MonumentScript>().health -= damage;
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool("isPunch", false);
+        
+    }    
     
     public void SetupEnemy(float speed, float health, float damage, float attackTime, float attackRadius, GameObject target, Vector3 targetLocation, int type)
     {
@@ -64,6 +80,7 @@ public class CustomerScript : MonoBehaviour
         this.targetLocation = targetLocation;
         this.type = type;
 
+        agent = GetComponent<NavMeshAgent>();
         agent.SetDestination(targetLocation);
         agent.speed = speed;
         agent.acceleration = speed * 2f;
@@ -73,6 +90,7 @@ public class CustomerScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Food"))
         {
+            Debug.Log("hit hit hit");
             health -= collision.gameObject.GetComponent<Object>().stats.damage;
         }
     }

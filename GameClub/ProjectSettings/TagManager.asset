@@ -6,7 +6,7 @@ TagManager:
   tags:
   - Customer
   - Food
-  - Floor
+  - Market
   layers:
   - Default
   - TransparentFX

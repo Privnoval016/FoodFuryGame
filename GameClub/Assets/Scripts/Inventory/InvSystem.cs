@@ -34,10 +34,10 @@ public class InvSystem : MonoBehaviour {
         if (Input.GetAxis("Mouse ScrollWheel") < 0f) {
             ChangeHighlightSlot(1);
         }
-        if (Input.GetKeyDown(KeyCode.G)) {
+        if (Input.GetKeyDown(KeyCode.Q)) {
             DropItem();
         }
-        if (Input.GetKeyDown(KeyCode.Q)) {
+        if (Input.GetMouseButtonDown(0)) {
             ThrowItem();
         }
     }
@@ -132,6 +132,12 @@ public class InvSystem : MonoBehaviour {
             // gravity rigidbody
             Rigidbody thrownItemRigidbody = thrownItem.GetComponent<Rigidbody>();
             thrownItemRigidbody.useGravity = true;
+            thrownItemRigidbody.isKinematic = false;
+
+            if (thrownItem.GetComponent<Object>().stats.id == 4)
+            {
+                thrownItem.transform.localScale *= 0.6f;
+            }
 
             // stats
             thrownItem.GetComponent<Object>().stats = slots[selectedSlotIndex].item;

@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Chipbag
   m_EditorClassIdentifier: 
   id: 0
-  itemName: Chips
+  itemName: Freetos
   description: A test cube object
   prefab: {fileID: 7909570523788371245, guid: bb2ac4f6677e306419f2808e9133bffb, type: 3}
   icon: {fileID: 2800000, guid: 9cfb2c9c50cae704b89b897f5e9250bc, type: 3}
   type: 0
   rarity: 1
   damage: 2
+  color: {r: 0.3161, g: 0.8396226, b: 0.28251448, a: 0}

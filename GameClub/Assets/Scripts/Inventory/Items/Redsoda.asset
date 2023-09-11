@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797f87aff3a4cd048b7f543e53dd75d7, type: 3}
+  m_Name: Redsoda
+  m_EditorClassIdentifier: 
+  id: 4
+  itemName: Red Cow
+  description: A test cube object
+  prefab: {fileID: 7805632735727594770, guid: dc5738639eb451e4c97d35ce6eb71a01, type: 3}
+  icon: {fileID: 2800000, guid: 7676d60d35533bf4f8efe4167a6e8cc9, type: 3}
+  type: 0
+  rarity: 0
+  damage: 1
+  color: {r: 0.6132076, g: 0.16716798, b: 0.10798619, a: 0}

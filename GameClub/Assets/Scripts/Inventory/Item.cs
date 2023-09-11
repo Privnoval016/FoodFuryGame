@@ -22,4 +22,5 @@ public class Item : ScriptableObject {
     public Types type;
     public Rarity rarity;
     public int damage;
+    public Color color;
 }
