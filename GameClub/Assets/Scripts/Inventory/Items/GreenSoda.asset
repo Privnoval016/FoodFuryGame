@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797f87aff3a4cd048b7f543e53dd75d7, type: 3}
   m_Name: GreenSoda
   m_EditorClassIdentifier: 
-  id: 4
+  id: 5
   itemName: Beast Energy
   description: A test cube object
   prefab: {fileID: 1842865663177418227, guid: 5fd2f9d3fbc7f8744807b39390432549, type: 3}
   icon: {fileID: 2800000, guid: 2c3eeef0fb459ff498949a0ef0215dbb, type: 3}
   type: 0
-  rarity: 2
-  damage: 3
+  rarity: 1
+  damage: 2
   color: {r: 0.6132076, g: 0.16716798, b: 0.10798619, a: 0}

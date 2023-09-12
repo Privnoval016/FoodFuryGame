@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 797f87aff3a4cd048b7f543e53dd75d7, type: 3}
+  m_Name: Milk
+  m_EditorClassIdentifier: 
+  id: 8
+  itemName: Milk
+  description: A test cube object
+  prefab: {fileID: 5871519542155946045, guid: 619fe7ed237976a41b29f96e8cdde87c, type: 3}
+  icon: {fileID: 2800000, guid: 67106170f8ff7324c846405249c9e097, type: 3}
+  type: 0
+  rarity: 2
+  damage: 3
+  color: {r: 1, g: 0.9305965, b: 0.9213836, a: 0}

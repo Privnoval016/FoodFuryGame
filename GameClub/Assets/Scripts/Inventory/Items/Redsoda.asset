@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797f87aff3a4cd048b7f543e53dd75d7, type: 3}
   m_Name: Redsoda
   m_EditorClassIdentifier: 
-  id: 4
+  id: 6
   itemName: Red Cow
   description: A test cube object
   prefab: {fileID: 7805632735727594770, guid: dc5738639eb451e4c97d35ce6eb71a01, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797f87aff3a4cd048b7f543e53dd75d7, type: 3}
   m_Name: Chipbag
   m_EditorClassIdentifier: 
-  id: 0
+  id: 4
   itemName: Freetos
   description: A test cube object
   prefab: {fileID: 7909570523788371245, guid: bb2ac4f6677e306419f2808e9133bffb, type: 3}

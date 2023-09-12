@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797f87aff3a4cd048b7f543e53dd75d7, type: 3}
   m_Name: Beancan
   m_EditorClassIdentifier: 
-  id: 1
+  id: 3
   itemName: Bean Can
   description: A grocery store beancan
   prefab: {fileID: 5903238481249489835, guid: a88f9ea4f5d3472488549be0b9b126c1, type: 3}

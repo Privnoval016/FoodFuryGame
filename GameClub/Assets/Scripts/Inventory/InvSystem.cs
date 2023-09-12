@@ -134,9 +134,17 @@ public class InvSystem : MonoBehaviour {
             thrownItemRigidbody.useGravity = true;
             thrownItemRigidbody.isKinematic = false;
 
-            if (thrownItem.GetComponent<Object>().stats.id == 4)
+            if (thrownItem.GetComponent<Object>().stats.id == 5 || thrownItem.GetComponent<Object>().stats.id == 6)
             {
                 thrownItem.transform.localScale *= 0.6f;
+            }
+            else if (thrownItem.GetComponent<Object>().stats.id == 7)
+            {
+                thrownItem.transform.localScale = new Vector3(2, 2, 2);
+            }
+            else if (thrownItem.GetComponent<Object>().stats.id == 8)
+            {
+                thrownItem.transform.localScale = new Vector3(1, 1, 1);
             }
 
             // stats

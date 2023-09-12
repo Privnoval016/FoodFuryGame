@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
     public float waveRate = 5.0f;
     public int waveNumber = 0;
 
+    public float waveMultiplier = 1;
+
     public float agentSpeed = 0;
     public float health = 2;
     public float damage = 1;
@@ -57,12 +59,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (currentCount >= waveLength)
         {
             waveTimer += Time.deltaTime;
             if (waveTimer >= waveRate)
             {
                 waveNumber++;
+                waveMultiplier = (0.125f) * Mathf.Pow((waveNumber - 1), 1.3f) + 1;
                 if (waveNumber % 3 == 1)
                    StartWave1();
                 else if (waveNumber % 3 == 2)
@@ -116,47 +120,44 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("Starting wave " + waveNumber);
         waveText.text = waveNumber.ToString();
-        waveUI.GetComponent<RawImage>().color = new Color(0.961f, 0.314f, 0, 1);
-        waveLength = 13;
-        spawnRate = 6.0f;
+        waveLength = 12;
+        spawnRate = 4.0f / waveMultiplier;
 
         enemyType = 1;
         health = 2;
         damage = 2;
         attackSpeed = 2;
-        attackRadius = 0.5f;
-        agentSpeed = 2f;
+        attackRadius = 1f;
+        agentSpeed = 4f;
     }
 
     void StartWave2()
     {
         Debug.Log("Starting wave " + waveNumber);
         waveText.text = waveNumber.ToString();
-        waveUI.GetComponent<RawImage>().color = new Color(0.165f, 0.404f, 0.737f, 1);
-        waveLength = 12;
-        spawnRate = 4.0f;
+        waveLength = 10;
+        spawnRate = 4.0f / waveMultiplier;
 
         enemyType = 2;
         health = 1;
         damage = 1;
         attackSpeed = 1;
-        attackRadius = 0.5f;
-        agentSpeed = 5f;
+        attackRadius = 1f;
+        agentSpeed = 8f;
     }
 
     void StartWave3()
     {
         Debug.Log("Starting wave " + waveNumber);
         waveText.text = waveNumber.ToString();
-        waveUI.GetComponent<RawImage>().color = new Color(0.804f, 0.580f, 0.192f, 1);
         waveLength = 8;
-        spawnRate = 8.0f;
+        spawnRate = 8.0f / waveMultiplier;
 
         enemyType = 1;
         health = 8;
         damage = 4;
         attackSpeed = 5;
-        attackRadius = 0.5f;
+        attackRadius = 1f;
         agentSpeed = 2f;
 
     }

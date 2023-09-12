@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 797f87aff3a4cd048b7f543e53dd75d7, type: 3}
   m_Name: Banana
   m_EditorClassIdentifier: 
-  id: 1
+  id: 2
   itemName: Banana
   description: A grocery store banana
   prefab: {fileID: 2286520378099979674, guid: 564136a0a8d20474c9a6a2334cbd44c3, type: 3}
